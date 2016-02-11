@@ -1,42 +1,40 @@
 <?php
-/*
-* Módulo de Taxa Por Tipo de Pagamento
-*
-* Autor Original: Aldo Anizio Lugão Camacho (http://www.visualcode.com.br)
-* @03/2013
-*
-* Modificado por Aldo Anizio Lugão Camacho (http://www.visualcode.com.br)
-* Adicionada a possibilidade de aplicar taxa por grupo de cliente
-* 01/10/2013
-*
-* Feito sobre OpenCart 1.5.5.1
-* Sob licença GPL.
-*/
 
 // Heading
-$_['heading_title'] = 'Payment Method Fee';
 
-// Text
-$_['text_success'] = 'Success: You have modified Payment Method Fee!';
-$_['text_total']   = 'Order Totals';
+$_['heading_title'] = 'Taxa Por Tipo de Pagamento';
 
-// Entry
-$_['entry_status']              = 'Status:';
-$_['entry_sort_order']          = 'Sort Order:';
-$_['entry_grupo_cliente']       = 'Customer Group:';
-$_['entry_metodo_pagamento']    = 'Payment Method:';
-$_['entry_operador']            = 'Operator:';
-$_['entry_taxa']                = 'Fee Amount:<br /><span class="help">Exemplo: 15.00</span>';
-$_['entry_tipo_taxa']           = 'Fee Type:';
-$_['entry_origem']              = 'Fee Origin:';
-$_['entry_valor_minimo']        = 'Minimum Order Value:<br /><span class="help">Example: 150.00</span>';
-$_['entry_valor_maximo']        = 'Maximum Order Value:<br /><span class="help">Example: 3000.00';
-$_['entry_descricao']           = 'Description:<br /><span class="help">Example: Bank Transfer Discount</span>';
-$_['entry_all_customer_groups'] = 'All Customer Groups';
+// Texts
 
-//Button
-$_['button_remove_metodo'] = 'Remove';
-$_['button_add_metodo']    = 'Add New Method';
+$_['text_total']   = 'Total de pedidos';
+$_['text_edit']    = 'Editar Módulo a Taxa Por Tipo de Pagamento!';
+$_['text_success'] = 'Sucesso: Você modificou a Taxa Por Tipo de Pagamento!';
 
-// Error
-$_['error_permission'] = 'Warning: You do not have permission to modify Payment Method Fee!';
+// Entries
+
+$_['entry_grupo_cliente']       = 'Grupo de Cliente';
+$_['entry_metodo_pagamento']    = 'Forma de Pagamento';
+$_['entry_operador']            = 'Operador';
+$_['entry_taxa']                = 'Valor da Taxa';
+$_['entry_origem']              = 'Origem';
+$_['entry_valor_minimo']        = 'Valor Minimo';
+$_['entry_valor_maximo']        = 'Valor Maximo';
+$_['entry_descricao']           = 'Descrição';
+$_['entry_all_customer_groups'] = 'Todos os Grupos';
+
+// Helps
+
+$_['help_taxa']         = 'Exemplo: 15.00 (casa decimal usando ponto)';
+$_['help_operador']     = 'Escolha entre aplicar um desconto ou acréscimo';
+$_['help_valor_minimo'] = 'Exemplo: 150.00 (casa decimal usando ponto)';
+$_['help_valor_maximo'] = 'Exemplo: 3000.00 (casa decimal usando ponto)';
+$_['help_descricao']    = 'Exemplo: Desconto para pagamento via depósito bancário';
+
+// Buttons
+
+$_['button_subrow'] = 'Remover';
+$_['button_addrow'] = 'Adicionar Novo Método';
+
+// Errors
+
+$_['error_permission'] = 'Atenção: Você não tem permissão para modificar este módulo!';
