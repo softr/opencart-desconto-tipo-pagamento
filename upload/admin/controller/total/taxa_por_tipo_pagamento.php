@@ -234,11 +234,11 @@ class ControllerTotalTaxaPorTipoPagamento extends Controller
 
         // Modelo grupos de clientes
 
-        $this->load->model('sale/customer_group');
+        $this->load->model('customer/customer_group');
 
         // Looping entre os grupos de clientes
 
-        foreach($this->model_sale_customer_group->getCustomerGroups() as $value)
+        foreach($this->model_customer_customer_group->getCustomerGroups() as $value)
         {
             $array[] = array
             (
