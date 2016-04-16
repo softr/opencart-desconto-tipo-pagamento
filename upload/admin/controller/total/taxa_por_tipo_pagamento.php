@@ -144,9 +144,9 @@ class ControllerTotalTaxaPorTipoPagamento extends Controller
 
         // Set module data
 
-        $data['taxa_por_tipo_pagamento_status']     = isset($this->request->post['taxa_por_tipo_pagamento_status'])     ? $this->request->post['taxa_por_tipo_pagamento_status']     : $this->config->get('taxa_por_tipo_pagamento_status');
+        $data['taxa_por_tipo_pagamento_status']     = isset($this->request->post['taxa_por_tipo_pagamento_status']) ? $this->request->post['taxa_por_tipo_pagamento_status'] : $this->config->get('taxa_por_tipo_pagamento_status');
         $data['taxa_por_tipo_pagamento_sort_order'] = isset($this->request->post['taxa_por_tipo_pagamento_sort_order']) ? $this->request->post['taxa_por_tipo_pagamento_sort_order'] : $this->config->get('taxa_por_tipo_pagamento_sort_order');
-        $data['taxa_por_tipo_pagamento_metodos']    = isset($this->request->post['taxa_por_tipo_pagamento_metodos'])    ? $this->request->post['taxa_por_tipo_pagamento_metodos']    : $this->config->get('taxa_por_tipo_pagamento_metodos');
+        $data['taxa_por_tipo_pagamento_metodos']    = isset($this->request->post['taxa_por_tipo_pagamento_metodos']) ? array_values($this->request->post['taxa_por_tipo_pagamento_metodos']) : array_values($this->config->get('taxa_por_tipo_pagamento_metodos'));
 
         // Layout areas
 
