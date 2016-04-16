@@ -23,11 +23,11 @@ class ModelTotalTaxaPorTipoPagamento extends Model
      * @return  array
      */
 
-	public function getTotal(&$total_data, &$total, &$taxes)
+    public function getTotal(&$total_data, &$total, &$taxes)
     {
         // Se o módulo estiver ativo (configuracao no admin)
 
-		if($this->config->get('taxa_por_tipo_pagamento_status'))
+        if($this->config->get('taxa_por_tipo_pagamento_status'))
         {
             // Ativar o modulo se houver meio de pagamento selecionado
 
@@ -49,13 +49,13 @@ class ModelTotalTaxaPorTipoPagamento extends Model
 
                 foreach($metodosPagamento as $value)
                 {
-                	// Validar forma de pagamento
+                    // Validar forma de pagamento
 
-					if($this->session->data['payment_method']['code'] == $value['metodo_pagamento'])
+                    if($this->session->data['payment_method']['code'] == $value['metodo_pagamento'])
                     {
-						// Carrega o idioma
+                        // Carrega o idioma
 
-						$this->load->language('total/taxa_por_tipo_pagamento');
+                        $this->load->language('total/taxa_por_tipo_pagamento');
 
                         // Carrega o model do cliente
 
@@ -67,7 +67,7 @@ class ModelTotalTaxaPorTipoPagamento extends Model
 
                         // Define o grupo do cliente atual
 
-                        $customer_group_id = isset($customer) ? $customer['customer_group_id'] : 0;
+                        $customer_group_id = empty($customer) ? 0 : $customer['customer_group_id'];
 
                         // Se grupo de clientes é permitido a tdos ou se o cliente se encaixa no grupo especificado
 
@@ -87,11 +87,11 @@ class ModelTotalTaxaPorTipoPagamento extends Model
 
                             // Validar valores
 
-    						if($validarValorMinimo && $validarValorMaximo)
+                            if($validarValorMinimo && $validarValorMaximo)
                             {
                                 // Calcula a taxa baseado no valor total da compra
 
-    							$valorAplicado = $value['tipo_taxa'] == '$' ? $value['taxa'] : $totalComparacao * ($value['taxa'] / 100);
+                                $valorAplicado = $value['tipo_taxa'] == '$' ? $value['taxa'] : $totalComparacao * ($value['taxa'] / 100);
 
                                 // Taxa aplicada formatada
 
@@ -99,22 +99,22 @@ class ModelTotalTaxaPorTipoPagamento extends Model
 
                                 // Array de dados do módulo
 
-    							$total_data[] = array
+                                $total_data[] = array
                                 (
-    								'code'		 => 'taxa_por_tipo_pagamento',
-    								'title'      => sprintf('%s (%s)', $value['descricao'], $textoTaxa),
-    								'value'      => $value['operador'] == '+' ? $valorAplicado : -$valorAplicado,
-    								'sort_order' => $this->config->get('taxa_por_tipo_pagamento_sort_order')
-    							);
+                                    'code'       => 'taxa_por_tipo_pagamento',
+                                    'title'      => sprintf('%s (%s)', $value['descricao'], $textoTaxa),
+                                    'value'      => $value['operador'] == '+' ? $valorAplicado : -$valorAplicado,
+                                    'sort_order' => $this->config->get('taxa_por_tipo_pagamento_sort_order')
+                                );
 
                                 // Aplica taxa por valor total da compra
 
                                 $total = $value['operador'] == '+' ? $total + $valorAplicado : $total - $valorAplicado;
-    						}
+                            }
                         }
-					}
-				}
-			}
-		}
-	}
+                    }
+                }
+            }
+        }
+    }
 }
