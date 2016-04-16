@@ -270,7 +270,7 @@ $('.addrow').click(function()
 {
     // Capturar ultimo indice
 
-    var lastRow = $('#taxas-metodos tbody tr.row:last').index();
+    var lastRow = $('#taxas-metodos tbody tr.trow:last').index();
 
     // Set next row
 
