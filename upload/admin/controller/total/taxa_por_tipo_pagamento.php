@@ -146,7 +146,30 @@ class ControllerTotalTaxaPorTipoPagamento extends Controller
 
         $data['taxa_por_tipo_pagamento_status']     = isset($this->request->post['taxa_por_tipo_pagamento_status']) ? $this->request->post['taxa_por_tipo_pagamento_status'] : $this->config->get('taxa_por_tipo_pagamento_status');
         $data['taxa_por_tipo_pagamento_sort_order'] = isset($this->request->post['taxa_por_tipo_pagamento_sort_order']) ? $this->request->post['taxa_por_tipo_pagamento_sort_order'] : $this->config->get('taxa_por_tipo_pagamento_sort_order');
-        $data['taxa_por_tipo_pagamento_metodos']    = isset($this->request->post['taxa_por_tipo_pagamento_metodos']) ? array_values($this->request->post['taxa_por_tipo_pagamento_metodos']) : array_values($this->config->get('taxa_por_tipo_pagamento_metodos'));
+
+        // Carregar/Filtrar faixas de desconto
+        if(isset($this->request->post['taxa_por_tipo_pagamento_metodos']))
+        {
+            if(is_array($this->request->post['taxa_por_tipo_pagamento_metodos']))
+            {
+                $data['taxa_por_tipo_pagamento_metodos'] = array_values($this->request->post['taxa_por_tipo_pagamento_metodos']);
+            }
+            else
+            {
+                $data['taxa_por_tipo_pagamento_metodos'] = array();
+            }
+        }
+        else
+        {
+            if(is_array($this->config->get('taxa_por_tipo_pagamento_metodos')))
+            {
+                $data['taxa_por_tipo_pagamento_metodos'] = array_values($this->config->get('taxa_por_tipo_pagamento_metodos'));
+            }
+            else
+            {
+                $data['taxa_por_tipo_pagamento_metodos'] = array();
+            }
+        }
 
         // Layout areas
 
