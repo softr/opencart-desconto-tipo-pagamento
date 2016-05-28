@@ -160,13 +160,28 @@ class ControllerTotalTaxaPorTipoPagamento extends Controller
             $this->data['taxa_por_tipo_pagamento_sort_order'] = $this->config->get('taxa_por_tipo_pagamento_sort_order');
         }
 
+        // Carregar/Filtrar faixas de desconto
         if(isset($this->request->post['taxa_por_tipo_pagamento_metodos']))
         {
-            $this->data['taxa_por_tipo_pagamento_metodos'] = array_values($this->request->post['taxa_por_tipo_pagamento_metodos']);
+            if(is_array($this->request->post['taxa_por_tipo_pagamento_metodos']))
+            {
+                $this->data['taxa_por_tipo_pagamento_metodos'] = array_values($this->request->post['taxa_por_tipo_pagamento_metodos']);
+            }
+            else
+            {
+                $this->data['taxa_por_tipo_pagamento_metodos'] = array();
+            }
         }
         else
         {
-            $this->data['taxa_por_tipo_pagamento_metodos'] = array_values($this->config->get('taxa_por_tipo_pagamento_metodos'));
+            if(is_array($this->config->get('taxa_por_tipo_pagamento_metodos')))
+            {
+                $this->data['taxa_por_tipo_pagamento_metodos'] = array_values($this->config->get('taxa_por_tipo_pagamento_metodos'));
+            }
+            else
+            {
+                $this->data['taxa_por_tipo_pagamento_metodos'] = array();
+            }
         }
 
         $this->template = 'total/taxa_por_tipo_pagamento.tpl';
