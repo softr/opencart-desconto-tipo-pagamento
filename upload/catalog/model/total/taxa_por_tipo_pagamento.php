@@ -54,17 +54,9 @@ class ModelTotalTaxaPorTipoPagamento extends Model
 
                         $this->load->language('total/taxa_por_tipo_pagamento');
 
-                        // Carrega o Model do Cliente
+                        // Define o grupo do cliente atual
 
-                        $this->load->model('account/customer');
-
-                        // Carrega os Dados do Cliente Logado
-
-                        $customer = $this->model_account_customer->getCustomer($this->session->data['customer_id']);
-
-                        // Define o Grupo do Cliente Atual
-
-                        $customer_group_id = empty($customer) ? 0 : $customer['customer_group_id'];
+                        $customer_group_id = $this->customer->isLogged() ? $this->customer->getCustomerGroupId() : 0;
 
                         // Se grupo de clientes é permitido a tdos ou se o Cliente se encaixa no grupo especificado
 
