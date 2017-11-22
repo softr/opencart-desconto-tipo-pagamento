@@ -5,13 +5,13 @@
 
 -----------
 #### Versão do módulo
-* 2.1
+* 2.2
 
 ----------------
 #### Tecnologias
 
 * [PHP] - versão >= 5.3
-* [OpenCart] - versões compatíveis = 2.1.x
+* [OpenCart] - versões compatíveis = 2.2.x
 
 ------------------------------
 #### Instruções de Instalação

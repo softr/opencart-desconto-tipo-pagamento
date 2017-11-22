@@ -4,7 +4,7 @@
  * Model Shipping Taxa Por Tipo de Pagamento
  *
  * @author     Aldo Anizio Lugão Camacho
- * @copyright  (c) 2015
+ * @copyright  (c) 2017
  */
 
 class ModelTotalTaxaPorTipoPagamento extends Model
@@ -17,13 +17,11 @@ class ModelTotalTaxaPorTipoPagamento extends Model
      * Get module total
      *
      * @access  public
-     * @param   array   $total_data  Array de Dados do Modulo
-     * @param   float   $total       Total do Pedido até o momento
-     * @param   float   $taxes       Total de Impostos
+     * @param   array   $total  Array de Dados do Modulo
      * @return  array
      */
 
-    public function getTotal(&$total_data, &$total, &$taxes)
+    public function getTotal($total)
     {
         // Se o módulo estiver ativo (configuracao no admin)
 
@@ -57,17 +55,9 @@ class ModelTotalTaxaPorTipoPagamento extends Model
 
                         $this->load->language('total/taxa_por_tipo_pagamento');
 
-                        // Carrega o model do cliente
-
-                        $this->load->model('account/customer');
-
-                        // Carrega os dados do cliente logado
-
-                        $customer = $this->model_account_customer->getCustomer($this->session->data['customer_id']);
-
                         // Define o grupo do cliente atual
 
-                        $customer_group_id = empty($customer) ? 0 : $customer['customer_group_id'];
+                        $customer_group_id = $this->customer->getGroupId();
 
                         // Se grupo de clientes é permitido a tdos ou se o cliente se encaixa no grupo especificado
 
@@ -75,7 +65,7 @@ class ModelTotalTaxaPorTipoPagamento extends Model
                         {
                             // Definir a origem do total
 
-                            $totalComparacao = $value['origem'] == 'carrinho' ? $this->cart->getSubTotal() : $total;
+                            $totalComparacao = $value['origem'] == 'carrinho' ? $this->cart->getSubTotal() : $total['total'];
 
                             // Validar valor minimo
 
@@ -99,8 +89,7 @@ class ModelTotalTaxaPorTipoPagamento extends Model
 
                                 // Array de dados do módulo
 
-                                $total_data[] = array
-                                (
+                                $total['totals'][] = array(
                                     'code'       => 'taxa_por_tipo_pagamento',
                                     'title'      => sprintf('%s (%s)', $value['descricao'], $textoTaxa),
                                     'value'      => $value['operador'] == '+' ? $valorAplicado : -$valorAplicado,
@@ -109,7 +98,7 @@ class ModelTotalTaxaPorTipoPagamento extends Model
 
                                 // Aplica taxa por valor total da compra
 
-                                $total = $value['operador'] == '+' ? $total + $valorAplicado : $total - $valorAplicado;
+                                $total['total'] = $value['operador'] == '+' ? $total['total'] + $valorAplicado : $total['total'] - $valorAplicado;
                             }
                         }
                     }
